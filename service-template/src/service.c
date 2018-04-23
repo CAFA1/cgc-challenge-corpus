@@ -108,7 +108,7 @@ int __attribute__((fastcall)) main(int secret_page_i, char *unused[]) {
             int (*func)(int);
             copy(&func, buf+3, 4);
             copy(&size, buf+7, 4);
-            transmit(STDERR, "type1\n", 6, NULL);
+            transmit(STDERR, "type1\n", 6, NULL);  //类型1 劫持控制流
             ret = (*func)(size);
         }
 #endif
@@ -116,7 +116,7 @@ int __attribute__((fastcall)) main(int secret_page_i, char *unused[]) {
 #ifndef PATCHED_2
         if (buf[0] == 0x41 && buf[1] == 0x42 && buf[2] == 0x44) {
             transmit(STDERR, "type2\n", 6, NULL);
-            transmit_all(STDOUT, secret_page, 0x1000);
+            transmit_all(STDOUT, secret_page, 0x1000);  //类型2  输出flag
         }
 #endif
 
