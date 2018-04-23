@@ -64,18 +64,18 @@ int __attribute__((fastcall)) main(int secret_page_i, char *unused[]) {
     (void) secret_page;
 
     fbuffered(stdout, 1);
-    check_seed();
+    check_seed(); //检查flag页是否匹配正确
 
     if (fread(&length, sizeof(length), stdin) < 0)
         return 0;
 
-    filter = filter_alloc(length);
+    filter = filter_alloc(length); //指令结构
     if (filter == NULL)
         return 0;
 
     for (i = 0; i < length; i++)
     {
-        if (fread(&filter->insn[i], sizeof(filter->insn[0]), stdin) < 0)
+        if (fread(&filter->insn[i], sizeof(filter->insn[0]), stdin) < 0)//读取每一条指令
             return 0;
     }
 

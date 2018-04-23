@@ -106,7 +106,7 @@ int validate_alu(state_t *state)
     if (insn->op.alu.source == SRC_REG)
         src = state->registers[insn->src];
     else
-        src = VALUE_NUMBER;
+        src = VALUE_NUMBER;  //VALUE_NUMBER = 0x02,
     
     if (insn->op.alu.code == ALU_NEG || insn->op.alu.code == ALU_END)
     {
@@ -184,7 +184,7 @@ int validate_st(state_t *state)
     return 1;
 }
 
-int validate_state(state_t *state)
+int validate_state(state_t *state) // 解析指令
 {
     for (; state->pc < state->filter->length; state->pc++)
     {
@@ -226,7 +226,7 @@ int filter_validate(filter_t *filter)
     state.filter = filter;
     state.pc = 0;
     for (i = 0; i < 16; i++)
-        state.registers[i] = VALUE_UNKNOWN;
+        state.registers[i] = VALUE_UNKNOWN; //寄存器缺省值
     state.registers[0] = VALUE_PTR_CTX;
     state.registers[REG_FRAME] = VALUE_PTR_FRAME;
 

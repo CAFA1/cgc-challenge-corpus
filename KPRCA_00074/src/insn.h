@@ -104,7 +104,7 @@ typedef union {
 typedef struct {
     op_t op;
     unsigned char dst : 4;
-    unsigned char src : 4;
+    unsigned char src : 4;  // 第几个寄存器，寄存器索引
     unsigned short offset;
     unsigned int extra;
 } insn_t;
