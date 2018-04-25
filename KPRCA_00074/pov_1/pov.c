@@ -48,7 +48,7 @@ int main()
 
     transmit_all(STDOUT, "31lk", 4);
 
-    random(&xorkey, 4, &bytes);
+    random(&xorkey, 4, &bytes); //The random system call populates the buffer referenced by buf with up to count bytes of random data
     *(unsigned int *)&pov_data[104] = xorkey;
     random(&pov_data[32], 2, &bytes);
 
